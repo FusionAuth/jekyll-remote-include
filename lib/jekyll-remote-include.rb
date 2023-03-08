@@ -22,8 +22,12 @@ module Jekyll
         open("#{@remote_include}")
       rescue
         # catch
-        URI.parse(context[@remote_include.strip].strip)
-        open("#{context[@remote_include.strip]}")
+        begin
+          URI.parse(context[@remote_include.strip].strip)
+          open("#{context[@remote_include.strip]}")
+        rescue
+          ""
+        end
       end
     end
 
